@@ -1,0 +1,3 @@
+git add --all
+gti commit -m Intial commit"
+git push
