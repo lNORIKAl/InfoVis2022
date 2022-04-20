@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>W02: Task 3</title>
+	</head>
+	<body>
+		v0:
+		<input id="x0" type="number" value="1"/>
+		<input id="y0" type="number" value="1"/>
+		<input id="z0" type="number" value="3"/>
+		<br>
+		v1:
+		<input id="x1" type="number" value="4"/>
+		<input id="y1" type="number" value="-1"/>
+		<input id="z1" type="number" value="1"/>
+		<br>
+		v2:
+		<input id="x2" type="number" value="0"/>
+		<input id="y2" type="number" value="1"/>
+		<input id="z2" type="number" value="8"/>
+		<br>
+		<input type="button" value="Calc" onclick="Calc()"/>
+		<p id="result"/>
+		
+		<script src="vec3.es6.js"></script>
+		
+		<script>
+		 function Calc()
+		 {
+		     const x0 = document.getElementById("x0").value;
+		     const y0 = document.getElementById("y0").value;
+		     const z0 = document.getElementById("z0").value;
+		     const v0 = new Vec3( x0, y0, z0 );
+
+		     const x1 = document.getElementById("x1").value;
+		     const y1 = document.getElementById("y1").value;
+		     const z1 = document.getElementById("z1").value;
+		     const v1 = new Vec3( x1, y1, z1 );
+
+		     const x2 = document.getElementById("x2").value;
+		     const y2 = document.getElementById("y2").value;
+		     const z2 = document.getElementById("z2").value;
+		     const v2 = new Vec3( x2, y2, z2 );
+
+		     const S = AreaOfTriangle( v0, v1, v2 );
+		     document.getElementById("result").innerHTML = "Result: " + S;
+		 }
+
+		 function AreaOfTriangle( a, b, c )
+		 {
+		     const ab = b.sub( a ), ac = c.sub( a );
+		     return ab.cross( ac ).length() / 2;
+		 }
+		</script>
+	</body>
+</html>
