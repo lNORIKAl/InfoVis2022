@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>W04:Task 2</title>
+    </head>
+    <body>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script>
+	var x0 = 5;
+	var lx = 100;
+	var ly = 10;
+	var height = 20;
+	
+	var svg = d3.select("body").append("svg");
+	d3.csv("https://lNORIKAl.github.io/InfoVis2022/W04/w04_task2.csv", function(data){
+	     svg.selectAll("rect")
+		.data(data)
+	        .enter()
+	        .append("rect")
+	        .attr("x", lx)
+	        .attr("y", function(d,i){ return ly + i * ( height + ly ); })
+	        .attr("width", function(d){ return d.length; })
+	        .attr("height", height);
+	 } );
+	</script>
+    </body>
+</html>
