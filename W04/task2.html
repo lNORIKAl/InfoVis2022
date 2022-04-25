@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>W04: Task2</title>
+	</head>
+
+	<body>
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script>
+			var charsize = 60
+			var padding = 10;
+			var height = 20;
+			var svg = d3.select("body").append("svg");
+			
+			d3.csv("https://lNORIKAl.github.io/InfoVis2022/W04/w04_task2.csv", graph);
+			
+			
+			function graph(data){
+				svg.selectAll("rect")
+					.data(data)
+					.enter()
+					.append("rect")
+					.attr("x", charsize + padding)
+					.attr("y", function (d, i) { return padding + i * (height + padding); })
+					.attr("width", function (d) { return d.length; })
+					.attr("height", height)
+
+				svg.selectAll("text")
+					.data(data)
+					.enter()
+					.append("text")
+					.attr("x", padding)
+					.attr("y", function (d, i) { return height + padding + i * (height + padding); })
+					.text(function (d) { return d.number; })
+					.attr("font-size", 16);
+			};
+		</script>
+	</body>
+
+</html>
