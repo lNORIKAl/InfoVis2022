@@ -7,6 +7,9 @@ d3.csv("https://lNORIKAl.github.io/InfoVis2022/W06/w06_task1.csv")
             width: 256,
             height: 256,
             margin: {top:10, right:10, bottom:20, left:10}
+            xticks: 10,
+            yticks: 10,
+            padrate: 0.2,
         };
 
         const scatter_plot = new ScatterPlot( config, data );
@@ -16,6 +19,12 @@ d3.csv("https://lNORIKAl.github.io/InfoVis2022/W06/w06_task1.csv")
         console.log( error );
     });
 
+function padrange(vmin, vmax, rate) {
+    var len = vmax - vmin;
+
+    return [vmin - rate * len, vmax + rate * len];
+}
+
 class ScatterPlot {
 
     constructor( config, data ) {
@@ -24,6 +33,9 @@ class ScatterPlot {
             width: config.width || 256,
             height: config.height || 256,
             margin: config.margin || {top:10, right:10, bottom:10, left:10}
+            xticks: config.xticks || 10,
+            yticks: config.yticks || 10,
+            padrate: config.padrate || 10,
         }
         this.data = data;
         this.init();
@@ -49,16 +61,16 @@ class ScatterPlot {
             .range( [0, self.inner_height] );
 
         self.xaxis = d3.axisBottom( self.xscale )
-            .ticks(6);
+            .ticks(self.config.xticks);
         
         self.yaxis = d3.axisBottom( self.yscale )
-        	.ticks(6);
+        	.ticks(self.config.yticks);
 
         self.xaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, ${self.inner_height})`);
             
         self.yaxis_group = self.chart.append('g')
-            .attr('transform', `translate(0, ${self.inner_width})`);
+            .attr('transform', `translate(0, 0)`);
     }
 
     update() {
@@ -66,11 +78,11 @@ class ScatterPlot {
 
         const xmin = d3.min( self.data, d => d.x );
         const xmax = d3.max( self.data, d => d.x );
-        self.xscale.domain( [xmin, xmax] );
+        self.xscale.domain(padrange(xmin, xmax, self.config.padrate));
 
         const ymin = d3.min( self.data, d => d.y );
         const ymax = d3.max( self.data, d => d.y );
-        self.yscale.domain( [ymin, ymax] );
+         self.yscale.domain(padrange(ymin, ymax, self.config.padrate));
 
         self.render();
     }
