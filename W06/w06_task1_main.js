@@ -4,9 +4,9 @@ d3.csv("https://lNORIKAl.github.io/InfoVis2022/W06/w06_task1.csv")
 
         var config = {
             parent: '#drawing_region',
-            width: 256,
-            height: 256,
-            margin: {top:10, right:10, bottom:20, left:10}
+            width: 306,
+            height: 306,
+            margin: {top:30, right:10, bottom:20, left:30}
             xticks: 10,
             yticks: 10,
             padrate: 0.2,
