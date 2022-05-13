@@ -7,6 +7,8 @@ d3.csv("https://lNORIKAl.github.io/InfoVis2022/W08/task2.csv")
             width: 256,
             height: 128,
             margin: {top:10, right:10, bottom:50, left:50},
+            xticks: 10,
+        	yticks: 10,
         };
 
        let lineChart = new LineChart(config, data);
@@ -71,7 +73,7 @@ class LineChart {
         self.area = d3.area()
             .x(d => self.xscale(d.x))
             .y1(d => self.yscale(d.y))
-            .y0(d3.max(self.data, d => self.yscale(d.y)));
+            .y0(d3.max(self.data, d => self.yscale(d.y)) + 5 );
     }
     
     update() {
@@ -86,22 +88,8 @@ class LineChart {
         self.chart.append('path')
             .attr('d', self.area(self.data))
             .attr('stroke', 'black')
-            .attr('fill', '#FFE4B5')
+            .attr('fill', '#e9967a')
 
-        // Add points
-        self.chart.selectAll("circle")
-            .data(self.data)
-            .enter()
-            .append("circle")
-            .attr("cx", d => self.xscale(d.x))
-            .attr("cy", d => self.yscale(d.y))
-            .attr("r", d => self.config.r)
-            .attr('class', (d, i) => `circle${i}`)
-            .each((d, i) => {
-                tippy(`circle.circle${i}`, {
-                    content: `(${d.x}, ${d.y})`,
-                });
-            });;
     }
 }
 
