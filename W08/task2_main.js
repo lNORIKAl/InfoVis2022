@@ -88,7 +88,7 @@ class LineChart {
         self.chart.append('path')
             .attr('d', self.area(self.data))
             .attr('stroke', 'black')
-            .attr('fill', '#e9967a')
+            .attr('fill', 'orange')
 
     }
 }
