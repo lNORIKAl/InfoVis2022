@@ -1,4 +1,4 @@
-d3.csv("https://lNORIKAl.github.io/InfoVis2022/W08/task1.csv")
+d3.csv("https://lNORIKAl.github.io/InfoVis2022/W08/task1/task1.csv")
    .then( data => {
         data.forEach( d => { d.value = +d.value; });
 
