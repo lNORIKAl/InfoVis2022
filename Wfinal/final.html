@@ -1,10 +1,22 @@
 <html>
     <head>
-        <title>Wfinal</title>
+        <title>Wfinal Task</title>
     </head>
     <body>
-	<svg id="drawing_region"></svg>
+    <h2>Chocolate Ice Calorie Data</h2>
+	<div id="tooltip"></div>
+	<div class="container">
+	    <div><svg id="drawing_region_scatterplot"></svg></div>
+	    <div><svg id="drawing_region_barchart"></svg></div>
+	</div>
 	<script src="https://d3js.org/d3.v6.min.js"></script>
-	<script src="final_main.js"></script>
+	<script src="BarChart.js"></script>
+	<script src="ScatterPlot.js"></script>
+	<script src="main.js"></script>
+	<div>
+		<button type="button" id="reverse">Reverse</button>
+	    <button type="button" id="descend">Descend</button>
+	    <button type="button" id="ascend">Ascend</button>
+	</div>
     </body>
 </html>
